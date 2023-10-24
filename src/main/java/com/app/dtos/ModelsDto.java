@@ -1,0 +1,55 @@
+package com.app.dtos;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
+public class ModelsDto {
+    private int id;
+    private String category;
+    private Date created;
+    private int end_year;
+    private String image_url;
+    private Date modified;
+    private String name;
+    private int start_year;
+    private Integer brand_id;
+    private OffersDto offers;
+    private OffersDto model_id;
+
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
+    public String getCategory() {return category;}
+    public void setCategory(String category) {this.category = category;}
+    public Date getCreated() {return created;}
+    public void setCreated(Date created) {this.created = created;}
+    public int getEnd_year() {return end_year;}
+    public void setEnd_year(int end_year) {this.end_year = end_year;}
+    public String getImage_url() {return image_url;}
+    public void setImage_url(String image_url) {this.image_url = image_url;}
+    public Date getModified() {return modified;}
+    public void setModified(Date modified) {this.modified = modified;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public int getStart_year() {return start_year;}
+    public void setStart_year(int start_year) {this.start_year = start_year;}
+    public Integer getBrand_id() {return brand_id;}
+    public void setBrand_id(Integer brand_id) {this.brand_id = brand_id;}
+    public OffersDto getOffers() {return offers;}
+    public void setOffers(OffersDto offers) {this.offers = offers;}
+    public OffersDto getModel_id() {return model_id;}
+    public void setModel_id(OffersDto model_id) {this.model_id = model_id;}
+
+    public ModelsDto() {}
+    public ModelsDto(String category, Date created, Integer end_year, String image_url, Date modified,
+                     String name, Integer start_year, Integer brand_id) {
+        this.category = category;
+        this.created = created;
+        this.end_year = end_year;
+        this.image_url = image_url;
+        this.modified = modified;
+        this.name = name;
+        this.start_year = start_year;
+        this.brand_id = brand_id;
+    }
+}
