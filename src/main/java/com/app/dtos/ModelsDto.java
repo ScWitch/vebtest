@@ -1,12 +1,13 @@
 package com.app.dtos;
 
+import com.app.enums.Category;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class ModelsDto {
     private int id;
-    private String category;
+    private Category category;
     private Date created;
     private int end_year;
     private String image_url;
@@ -19,8 +20,8 @@ public class ModelsDto {
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
-    public String getCategory() {return category;}
-    public void setCategory(String category) {this.category = category;}
+    public Category getCategory() {return category;}
+    public void setCategory(Category category) {this.category = category;}
     public Date getCreated() {return created;}
     public void setCreated(Date created) {this.created = created;}
     public int getEnd_year() {return end_year;}
@@ -33,15 +34,20 @@ public class ModelsDto {
     public void setName(String name) {this.name = name;}
     public int getStart_year() {return start_year;}
     public void setStart_year(int start_year) {this.start_year = start_year;}
-    public Integer getBrand_id() {return brand_id;}
-    public void setBrand_id(Integer brand_id) {this.brand_id = brand_id;}
+    public Integer getBrandId() {
+        return brand_id;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brand_id = brandId;
+    }
     public OffersDto getOffers() {return offers;}
     public void setOffers(OffersDto offers) {this.offers = offers;}
     public OffersDto getModel_id() {return model_id;}
     public void setModel_id(OffersDto model_id) {this.model_id = model_id;}
 
     public ModelsDto() {}
-    public ModelsDto(String category, Date created, Integer end_year, String image_url, Date modified,
+    public ModelsDto(Category category, Date created, Integer end_year, String image_url, Date modified,
                      String name, Integer start_year, Integer brand_id) {
         this.category = category;
         this.created = created;

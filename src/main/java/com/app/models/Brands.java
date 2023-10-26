@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name = "brands")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Brands extends BaseEntity {
+
     @OneToMany(mappedBy = "brand")
     private Set<Models> model;
     @Column(name = "created")
@@ -19,9 +20,13 @@ public class Brands extends BaseEntity {
     @Column(name = "name")
     private String name;
 
-    public Set<Models> getModel() {return model;}
+    public Set<Models> getModel() {
+        return model;
+    }
 
-    public void setModel(Set<Models> model) {this.model = model;}
+    public void setModel(Set<Models> model) {
+        this.model = model;
+    }
 
     public Date getCreated() {
         return created;

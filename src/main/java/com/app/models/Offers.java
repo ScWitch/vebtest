@@ -1,5 +1,7 @@
 package com.app.models;
 
+import com.app.enums.Engine;
+import com.app.enums.Transmission;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
@@ -21,7 +23,7 @@ public class Offers extends BaseEntity {
     @Column(name = "description")
     private String description;
     @Column(name = "engine")
-    private String engine;
+    private Engine engine;
     @Column(name = "image_url")
     private String imageUrl;
     @Column(name = "mileage")
@@ -31,7 +33,7 @@ public class Offers extends BaseEntity {
     @Column(name = "price", precision = 19, scale = 2)
     private BigDecimal price;
     @Column(name = "transmission")
-    private String transmission;
+    private Transmission transmission;
     @Column(name = "year")
     private Integer year;
 
@@ -70,11 +72,11 @@ public class Offers extends BaseEntity {
         this.description = description;
     }
 
-    public String getEngine() {
+    public Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
@@ -110,11 +112,11 @@ public class Offers extends BaseEntity {
         this.price = price;
     }
 
-    public String getTransmission() {
+    public Transmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(String transmission) {
+    public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
     }
 

@@ -1,7 +1,9 @@
 package com.app.services.impl;
 
 import com.app.dtos.ModelsDto;
+import com.app.models.Brands;
 import com.app.models.Models;
+import com.app.repositories.BrandsRepository;
 import com.app.repositories.ModelsRepository;
 import org.springframework.stereotype.Service;
 import com.app.services.ModelsService;
@@ -16,14 +18,26 @@ import java.util.stream.Collectors;
 public class ModelsServiceImpl implements ModelsService<Integer> {
     @Autowired
     private ModelsRepository modelsRepository;
+
+    @Autowired
+    private BrandsRepository brandsRepository;
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public ModelsDto registerModels(ModelsDto models) {
         Models newModels = modelMapper.map(models, Models.class);
+        Brands brand = brandsRepository.findById(models.getBrandId())
+                .orElseThrow(() -> new IllegalArgumentException("Error"));
+        newModels.setBrand(brand);
+        newModels.setBrand_id(brand.getId());
         return modelMapper.map(modelsRepository.save(newModels), ModelsDto.class);
     }
+
+
+
+
+
 
     @Override
     public void expelModels(ModelsDto models) {

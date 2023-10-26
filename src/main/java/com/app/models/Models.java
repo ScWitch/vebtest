@@ -1,13 +1,19 @@
 package com.app.models;
 
+import com.app.enums.Category;
 import jakarta.persistence.*;
 import java.util.Date;
 @Entity
 @Table(name = "models")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Models extends BaseEntity {
+    public Category getCategory() {return category;}
+
+    public void setCategory(Category category) {this.category = category;}
+
     @Column(name = "category")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     @Column(name = "created")
     private Date created;
@@ -28,10 +34,20 @@ public class Models extends BaseEntity {
     private Integer start_year;
     @OneToOne(mappedBy = "model")
     private Offers offer;
+    @Column(name = "brand_id", insertable = false, updatable = false)
+    private Integer brand_id;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brands brand;
+
+    public Integer getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(Integer brand_id) {
+        this.brand_id = brand_id;
+    }
 
     public Models() {}
 
@@ -50,13 +66,7 @@ public class Models extends BaseEntity {
         this.offer = offer;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     public Date getCreated() {
         return created;
@@ -107,8 +117,8 @@ public class Models extends BaseEntity {
     }
 
 
-    protected Models(String category, Date created, Integer end_year, String image_url, Date modified,
-                     String name, Integer start_year) {
+    protected Models(Category category, Date created, Integer end_year, String image_url, Date modified,
+                     String name, Integer start_year,int brand_id) {
         this.category = category;
         this.created = created;
         this.end_year = end_year;

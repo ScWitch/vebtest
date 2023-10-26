@@ -7,7 +7,9 @@ import com.app.dtos.RolesDto;
 import com.app.dtos.UsersDto;
 import com.app.enums.Category;
 import com.app.enums.Engine;
+import com.app.enums.Role;
 import com.app.enums.Transmission;
+import com.app.models.Users;
 import com.app.services.BrandsServices;
 import com.app.services.ModelsService;
 import com.app.services.OffersService;
@@ -44,19 +46,17 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void seedData() {
-        Transmission trf = Transmission.AUTOMATIC;
-        Engine engine = Engine.ELECTRIC;
-        OffersDto offersDto = new OffersDto(new Date(), "Учшее предложение", engine.toString(), "URL изображения", 10000, new Date(), BigDecimal.valueOf(5000), trf.toString(), 2023);
-        offersService.registerOffers(offersDto);
-        UsersDto usersDto = new UsersDto(true, new Date(),"Имя", "URL изображения", "Фамилия",new Date(),"parol","Пароль",1,"adssada");
-        usersService.registerUsers(usersDto);
-        Category cat = Category.CAR;
-        ModelsDto modelsDto = new ModelsDto(cat.toString(), new Date(), 2025, "URL изображения модели", new Date(), "Модель автомобиля", 2020, 1);
-        modelsService.registerModels(modelsDto);
-        BrandsDto brandsDto = new BrandsDto(new Date(), new Date(), "Название бренда");
-        brandsService.registerBrands(brandsDto);
-        RolesDto rolesDto = new RolesDto("Admin");
+        RolesDto rolesDto = new RolesDto(Role.ADMIN);
         rolesService.registerRoles(rolesDto);
+        UsersDto usersDto = new UsersDto(true,"car@mail.ru", new Date(), "Sinergia", "URL img", "Lyche", new Date(), "Wseh", "Sinergia_net", 1);
+        usersService.registerUsers(usersDto);
+        BrandsDto brandsDto = new BrandsDto(new Date(), new Date(), "BMW");
+        brandsService.registerBrands(brandsDto);
+        ModelsDto modelsDto = new ModelsDto(Category.CAR, new Date(), 2025, "URL img", new Date(), "GT-500", 1945, 1);
+        modelsService.registerModels(modelsDto);
+
+        OffersDto offersDto = new OffersDto(new Date(), "Сомнительное предложение", Engine.ELECTRIC, "URL img", 5700, new Date(), BigDecimal.valueOf(6000), Transmission.AUTOMATIC, 2023,1,1);
+        offersService.registerOffers(offersDto);
     }
 
     @Override

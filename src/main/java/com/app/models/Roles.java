@@ -1,5 +1,6 @@
 package com.app.models;
 
+import com.app.enums.Role;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -9,7 +10,12 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Roles extends BaseEntity {
     @Column(name = "name")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private Role name;
+
+    public Role getName() {return name;}
+
+    public void setName(Role name) {this.name = name;}
 
     @OneToMany(mappedBy = "role")
     private Set<Users> user;
@@ -22,18 +28,9 @@ public class Roles extends BaseEntity {
         this.user = user;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
     protected Roles() {
     }
 
-    protected Roles(String name) {
-        this.name = name;
-    }
 }

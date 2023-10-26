@@ -1,5 +1,8 @@
 package com.app.dtos;
 
+import com.app.enums.Engine;
+import com.app.enums.Transmission;
+import io.r2dbc.spi.Parameter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -9,16 +12,18 @@ public class OffersDto {
     private int id;
     private Date created;
     private String description;
-    private String engine;
+    private Engine engine;
     private String imageUrl;
     private Integer mileage;
     private Date modified;
     private BigDecimal price;
-    private String transmission;
+    private Transmission transmission;
     private Integer year;
+    private int model_id;
+    private int seller_id;
 
-    public OffersDto(Date created, String description, String engine, String imageUrl, Integer mileage,
-                     Date modified, BigDecimal price, String transmission, Integer year) {
+    public OffersDto(Date created, String description, Engine engine, String imageUrl, Integer mileage,
+                     Date modified, BigDecimal price, Transmission transmission, Integer year, Integer model_id, Integer seller_id) {
         this.created = created;
         this.description = description;
         this.engine = engine;
@@ -28,16 +33,28 @@ public class OffersDto {
         this.price = price;
         this.transmission = transmission;
         this.year = year;
-
-
+        this.model_id = model_id;
+        this.seller_id = seller_id;
     }
 
-    public OffersDto() {
-        // Initialize default values or leave it empty if not needed.
+    public OffersDto() {}
+
+    public int getModel_id() {
+        return model_id;
     }
 
+    public void setModel_id(int model_id) {
+        this.model_id = model_id;
+    }
 
-    // Constructors, getters, and setters
+    public int getSeller_id() {
+        return seller_id;
+    }
+
+    public void setSeller_id(int seller_id) {
+        this.seller_id = seller_id;
+    }
+
     public int getId() {
         return id;
     }
@@ -62,11 +79,11 @@ public class OffersDto {
         this.description = description;
     }
 
-    public String getEngine() {
+    public Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(String engine) {
+    public void setEngine(Engine engine) {
         this.engine = engine;
     }
 
@@ -102,11 +119,11 @@ public class OffersDto {
         this.price = price;
     }
 
-    public String getTransmission() {
+    public Transmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(String transmission) {
+    public void setTransmission(Transmission transmission) {
         this.transmission = transmission;
     }
 

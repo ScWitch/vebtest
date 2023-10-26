@@ -75,8 +75,8 @@ public class UsersDto {
 
     public void setSeller_Id(OffersDto seller_Id) {this.seller_Id = seller_Id;}
     public UsersDto(){}
-    public UsersDto(Boolean is_active, Date created, String first_name, String image_url, String last_name,
-                    Date modified, String password, String username,Integer role_id,String email){
+    public UsersDto(Boolean is_active, String email,Date created, String first_name, String image_url, String last_name,
+                    Date modified, String password, String username,Integer role_id){
         this.is_active = is_active;
         this.email = email;
         this.created = created;
