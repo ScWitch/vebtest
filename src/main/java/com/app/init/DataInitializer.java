@@ -48,14 +48,16 @@ public class DataInitializer implements CommandLineRunner {
     private void seedData() {
         RolesDto rolesDto = new RolesDto(Role.ADMIN);
         rolesService.registerRoles(rolesDto);
-        UsersDto usersDto = new UsersDto(true,"car@mail.ru", new Date(), "Sinergia", "URL img", "Lyche", new Date(), "Wseh", "Sinergia_net", 1);
+        RolesDto rolesDto1 = new RolesDto(Role.USER);
+        rolesService.registerRoles(rolesDto1);
+        UsersDto usersDto = new UsersDto(true,"car@mail.ru", new Date(), "Sinergia", "URL img", "Lyche", new Date(), "Wseh", "Sinergia_net", 2);
         usersService.registerUsers(usersDto);
         BrandsDto brandsDto = new BrandsDto(new Date(), new Date(), "BMW");
         brandsService.registerBrands(brandsDto);
         ModelsDto modelsDto = new ModelsDto(Category.CAR, new Date(), 2025, "URL img", new Date(), "GT-500", 1945, 1);
         modelsService.registerModels(modelsDto);
 
-        OffersDto offersDto = new OffersDto(new Date(), "Сомнительное предложение", Engine.ELECTRIC, "URL img", 5700, new Date(), BigDecimal.valueOf(6000), Transmission.AUTOMATIC, 2023,1,1);
+        OffersDto offersDto = new OffersDto(new Date(), "Сомнительное предложение", Engine.ELECTRIC, "Пустая ссылка на картинку", 5700, new Date(), BigDecimal.valueOf(6000), Transmission.AUTOMATIC, 2023,1,1);
         offersService.registerOffers(offersDto);
     }
 
