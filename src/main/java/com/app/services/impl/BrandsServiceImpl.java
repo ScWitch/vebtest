@@ -5,6 +5,7 @@ import com.app.dtos.ModelsDto;
 import com.app.models.Brands;
 import com.app.models.Models;
 import com.app.repositories.BrandsRepository;
+import com.app.repositories.RolesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.app.services.BrandsServices;
@@ -18,10 +19,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BrandsServiceImpl implements BrandsServices<Integer> {
-    @Autowired
+
     private BrandsRepository brandsRepository;
-    @Autowired
+
     private ModelMapper modelMapper;
+
+    @Autowired
+    public void setBrandsRepository(BrandsRepository brandsRepository){
+        this.brandsRepository = brandsRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public BrandsDto registerBrands(BrandsDto brands) {

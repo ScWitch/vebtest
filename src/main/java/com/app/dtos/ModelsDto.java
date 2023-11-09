@@ -34,11 +34,10 @@ public class ModelsDto {
     public void setName(String name) {this.name = name;}
     public int getStart_year() {return start_year;}
     public void setStart_year(int start_year) {this.start_year = start_year;}
-    public Integer getBrandId() {
+    public Integer getBrand_id() {
         return brand_id;
     }
-
-    public void setBrandId(Integer brandId) {
+    public void setBrand_id(Integer brandId) {
         this.brand_id = brandId;
     }
     public OffersDto getOffers() {return offers;}

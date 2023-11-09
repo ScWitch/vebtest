@@ -5,6 +5,7 @@ import com.app.models.Brands;
 import com.app.models.Models;
 import com.app.repositories.BrandsRepository;
 import com.app.repositories.ModelsRepository;
+import com.app.repositories.RolesRepository;
 import org.springframework.stereotype.Service;
 import com.app.services.ModelsService;
 import org.modelmapper.ModelMapper;
@@ -16,28 +17,35 @@ import java.util.stream.Collectors;
 
 @Service
 public class ModelsServiceImpl implements ModelsService<Integer> {
-    @Autowired
+
     private ModelsRepository modelsRepository;
 
-    @Autowired
     private BrandsRepository brandsRepository;
-    @Autowired
+
     private ModelMapper modelMapper;
+
+    @Autowired
+    public void setModelsRepository(ModelsRepository modelsRepository){
+        this.modelsRepository = modelsRepository;
+    }
+    @Autowired
+    public void setBrandsRepository(BrandsRepository brandsRepository){
+        this.brandsRepository = brandsRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public ModelsDto registerModels(ModelsDto models) {
         Models newModels = modelMapper.map(models, Models.class);
-        Brands brand = brandsRepository.findById(models.getBrandId())
+        Brands brand = brandsRepository.findById(models.getBrand_id())
                 .orElseThrow(() -> new IllegalArgumentException("Error"));
         newModels.setBrand(brand);
         newModels.setBrand_id(brand.getId());
         return modelMapper.map(modelsRepository.save(newModels), ModelsDto.class);
     }
-
-
-
-
-
 
     @Override
     public void expelModels(ModelsDto models) {

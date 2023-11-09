@@ -6,7 +6,6 @@ import com.app.repositories.RolesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.app.services.RolesService;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -14,10 +13,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RolesServiceImpl implements RolesService<Integer> {
-    @Autowired
+
     private RolesRepository rolesRepository;
-    @Autowired
+
     private ModelMapper modelMapper;
+
+    @Autowired
+    public void setRolesRepository(RolesRepository rolesRepository){
+        this.rolesRepository = rolesRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper){
+        this.modelMapper = modelMapper;
+    }
 
     @Override
     public RolesDto registerRoles(RolesDto roles) {

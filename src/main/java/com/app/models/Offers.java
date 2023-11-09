@@ -10,17 +10,17 @@ import java.util.Date;
 
 @Entity
 @Table(name = "offers")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Offers extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "seller_Id")
     private Users seller;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "model_Id")
     private Models model;
     @Column(name = "description")
     private String description;
     @Column(name = "engine")
+    @Enumerated(EnumType.STRING)
     private Engine engine;
     @Column(name = "image_url")
     private String imageUrl;
@@ -29,6 +29,7 @@ public class Offers extends BaseEntity {
     @Column(name = "price", precision = 19, scale = 2)
     private BigDecimal price;
     @Column(name = "transmission")
+    @Enumerated(EnumType.STRING)
     private Transmission transmission;
     @Column(name = "year")
     private Integer year;

@@ -1,7 +1,9 @@
 package com.app.controllers;
 
 import com.app.dtos.UsersDto;
+import com.app.services.RolesService;
 import com.app.services.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 public class UsersControll {
-    private final UsersService<Integer> usersService;
+    private UsersService<Integer> usersService;
 
-    public UsersControll(UsersService<Integer> usersService) {
+    @Autowired
+    public void setUsersService(UsersService<Integer> usersService) {
         this.usersService = usersService;
     }
 
@@ -22,7 +25,6 @@ public class UsersControll {
         UsersDto registeredUsers = usersService.registerUsers(usersDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredUsers);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<UsersDto> getUsersById(@PathVariable Integer id) {

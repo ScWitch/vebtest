@@ -6,10 +6,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "brands")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Brands extends BaseEntity {
-
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Models> model;
     @Column(name = "name")
     private String name;

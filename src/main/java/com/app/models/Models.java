@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.util.Date;
 @Entity
 @Table(name = "models")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Models extends BaseEntity {
     @Column(name = "category")
     @Enumerated(EnumType.STRING)
@@ -18,29 +17,22 @@ public class Models extends BaseEntity {
     private String name;
     @Column(name = "start_year")
     private Integer start_year;
-    @OneToOne(mappedBy = "model")
-    private Offers offer;
     @Column(name = "brand_id", insertable = false, updatable = false)
     private Integer brand_id;
-
+    @OneToOne(mappedBy = "model",cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Offers offer;
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brands brand;
-
+    public Models() {}
     public Category getCategory() {return category;}
-
     public void setCategory(Category category) {this.category = category;}
-
     public Integer getBrand_id() {
         return brand_id;
     }
-
     public void setBrand_id(Integer brand_id) {
         this.brand_id = brand_id;
     }
-
-    public Models() {}
-
     public Brands getBrand() {
         return brand;
     }

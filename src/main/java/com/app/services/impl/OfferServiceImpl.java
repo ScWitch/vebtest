@@ -5,6 +5,7 @@ import com.app.models.Models;
 import com.app.models.Offers;
 import com.app.models.Users;
 import com.app.repositories.OffersRepository;
+import com.app.repositories.RolesRepository;
 import com.app.services.OffersService;
 import com.app.repositories.ModelsRepository;
 import com.app.repositories.UsersRepository;
@@ -18,17 +19,26 @@ import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OffersService<Integer> {
-    private final OffersRepository offersRepository;
-    private final ModelMapper modelMapper;
-    @Autowired
+    private OffersRepository offersRepository;
+    private ModelMapper modelMapper;
     private UsersRepository usersRepository;
-    @Autowired
     private ModelsRepository modelsRepository;
 
     @Autowired
-    public OfferServiceImpl(OffersRepository offersRepository, ModelMapper modelMapper) {
+    public void setOffersRepository(OffersRepository offersRepository){
         this.offersRepository = offersRepository;
+    }
+    @Autowired
+    public void setModelMapper(ModelMapper modelMapper){
         this.modelMapper = modelMapper;
+    }
+    @Autowired
+    public void setUsersRepository(UsersRepository usersRepository){
+        this.usersRepository = usersRepository;
+    }
+    @Autowired
+    public void setModelsRepository(ModelsRepository modelsRepository){
+        this.modelsRepository = modelsRepository;
     }
 
     @Override

@@ -19,7 +19,7 @@ public class Users extends BaseEntity {
     private Boolean is_active;
     @Column(name = "image_url")
     private String image_url;
-    @OneToMany(mappedBy = "seller")
+    @OneToMany(mappedBy = "seller",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Offers> offers;
     @ManyToOne
     @JoinColumn(name = "role_id")

@@ -2,6 +2,8 @@ package com.app.controllers;
 
 import com.app.dtos.ModelsDto;
 import com.app.services.ModelsService;
+import com.app.services.RolesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/models")
 public class ModelsControll {
-    private final ModelsService<Integer> modelsService;
+    private ModelsService<Integer> modelsService;
 
-    public ModelsControll(ModelsService<Integer> modelsService) {
+    @Autowired
+    public void setModelsService(ModelsService<Integer> modelsService) {
         this.modelsService = modelsService;
     }
 
